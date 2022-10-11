@@ -16,8 +16,7 @@
 <body>
 
 
-
-<?php echo $content;?>
+<?php require_once $file;?>
 
 
 

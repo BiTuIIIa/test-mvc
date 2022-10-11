@@ -16,8 +16,8 @@
 
 <body>
 <div class="start">
-    <?php session_start(); ?>
         <?php if ($_SESSION["user"]): ?>
+        <?php var_dump($_SESSION);die(); ?>
              <h2> Hello <?php echo $_SESSION['user']['email'];?> </h2>
         <?php else: ?>
             <h2>Hello USER! Please sing in</h2>

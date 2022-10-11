@@ -9,14 +9,14 @@ class Authuser extends BaseController
 {
 
 
+
     public function login(){
+        unset($_SESSION['user']);
         $this->view->layoutsName="Base";
-        $this->view->render("/Login");
+        $this->view->render("Login");
 
     }
     public function validation(){
-
-        session_start();
 
         $mail = $this->request->email;
         $password = $this->request->password;

@@ -4,7 +4,7 @@ use Libs\BaseController;
 use Libs\Model;
 use PDO;
 
-class Authuser extends BaseController
+class Login extends BaseController
 
 {
 
@@ -26,20 +26,20 @@ class Authuser extends BaseController
 
         if (empty($user)) {
             $_SESSION['error'] = "Неверный email, или он отсутвует в системе"; // если пользователь отсутсвует
-            header("Location: /authuser/login");
+            header("Location: /login/login");
             exit;
         }
 
         if (!password_verify($password,$user['password'])) {
             $_SESSION['error'] = "Неверный пароль"; // eсли пароли не совпадут
-            header("Location: /authuser/login ");
+            header("Location: /login/login ");
             exit;
         }
 
 
         $_SESSION ['user'] = ["email" => $user['email'], "id" => $user['id']];
 
-        header("Location: /test/index");
+        header("Location: /main/main");
         exit;
 
     }

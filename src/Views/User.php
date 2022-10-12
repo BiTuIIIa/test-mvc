@@ -1,8 +1,8 @@
 <div class="addUser" >
 
-    <h1 class="text-center">Please enter your data </h1>
+    <h2 class="text-center">Please enter data new user </h2>
 
-    <form class="validation" action="/adduser/pushuser" method="post">
+    <form class="validation" action="/user/adduser" method="post">
         <div class="form-group was-validated"">
             <label class="form-label" for="first_name">Enter your first name</label>
             <input class="form-control" type="text" id="first_name" name="first_name" required>

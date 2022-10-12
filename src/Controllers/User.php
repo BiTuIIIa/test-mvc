@@ -6,17 +6,32 @@ use Libs\BaseController;
 use Libs\Model;
 use PDO;
 
-class Adduser extends BaseController
+class User extends BaseController
 {
 
 
-    public function User(){
-
-        $this->view->render("/User");
+    public function User()
+    {
+        $this->view->layoutsName = "BaseMain";
+        $this->view->render("User");
 
     }
 
-    public function pushuser() {
+    public function Tables()
+    {
+
+        $this->view->layoutsName = "BaseMain";
+        $this->view->render("Tablesuser");
+
+
+        $pdo = new Model();
+        $all_user = $pdo->connection->query("SELECT * FROM `adduser` ; ")->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($all_user);
+
+    }
+
+
+    public function adduser() {
 
        $firstname =  $this->request-> first_name;
        $lastname = $this->request-> last_name;
@@ -35,25 +50,10 @@ class Adduser extends BaseController
 
        $pdo->connection->query("INSERT adduser (first_name,last_name,email,password) 
        VALUE ('$firstname','$lastname','$mail','$hashed_password')");
-       header('Location: /authuser/login ');
+       header('Location: /main/main ');
        exit();
 
     }
-
-    public function showuser(){
-
-        $pdo = new Model();
-        $all_user = $pdo->connection->query("SELECT * FROM `adduser` WHERE id > 0; ")->fetch(PDO::FETCH_ASSOC);
-        if (!empty($all_user)){
-
-            print_r($all_user) . '<br>';
-        }
-
-
-    }
-
-
-
 
 
 }

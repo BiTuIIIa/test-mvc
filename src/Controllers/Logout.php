@@ -8,7 +8,7 @@ class Logout
   public function exitSes(){
 
       unset($_SESSION['user']);
-      header("Location: /test/index");
+      header("Location: /login/login");
 
   }
 

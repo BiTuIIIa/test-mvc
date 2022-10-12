@@ -6,26 +6,23 @@
         <th scope="col">First_name</th>
         <th scope="col">Last_name</th>
         <th scope="col">Email</th>
+        <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
+    <?php use Libs\Model;
+    $pdo = new Model();
+    $all_user = $pdo->connection->query("SELECT * FROM `adduser` ; ")->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($all_user as $value){
+    ?>
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row"><?php echo $value['id']?></th>
+        <td><?php echo $value['first_name']?></td>
+        <td><?php echo $value['last_name']?></td>
+        <td><?php echo $value['email']?></td>
+        <td>23<td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
+    <?php } ?>
     </tbody>
 </table>
 </div>

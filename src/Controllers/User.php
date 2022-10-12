@@ -24,9 +24,15 @@ class User extends BaseController
         $this->view->render("Tablesuser");
 
 
-        $pdo = new Model();
+      /*  $pdo = new Model();
         $all_user = $pdo->connection->query("SELECT * FROM `adduser` ; ")->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($all_user);
+        foreach ($all_user as $value){
+            echo '<tr>';
+           echo  '<td>' . ($value['first_name']) . '</td>';
+           echo  '<td>' . ($value['last_name']) . '</td>';
+           echo  '<td>' . ($value['email']) . '</td>';
+            echo '</tr>';
+        }*/
 
     }
 

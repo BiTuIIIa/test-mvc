@@ -1,6 +1,5 @@
 <section>
     <div class="container-xxl">
-
     <div class="row align-items-center">
         <div class="col-7">
             <h2>Welcome to site</h2>

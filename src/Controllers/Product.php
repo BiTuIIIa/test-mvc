@@ -55,7 +55,7 @@ class Product extends BaseController
 
             $final_price = $original_price + ((40 / 100) * $original_price);
             $margin_mode = "fix overpriced";
-            $margin = 0;
+            $margin = 40;
 
             $pdo->connection->query("INSERT INTO `product` (`title`,`description`,`original_price`,`margin`,`margin_mode`,`final_price`) 
         VALUE ('$title','$description','$original_price','$margin', '$margin_mode','$final_price')");
@@ -80,19 +80,34 @@ class Product extends BaseController
 
 
     public function edit()
-    {
+    {   $id = $this->request->id;
         $title = $this->request->title;
         $description = $this->request->description;
         $original_price = $this->request->original_price;
         $margin = $this->request->margin;
-        $plus_margin = $this->request->plus_margin;
-        $fixa = $this->request->fixa;
-        if (isset($id)) {
+
+        var_dump($margin);
+
+
+        if (isset($id) && ($margin>=41 || $margin<=39) ) {
+
+            $final_price = $original_price + (($margin / 100) * $original_price);
+            $margin_mode = 'margin';
             $pdo = new Model();
             $pdo->connection->query("UPDATE `product` SET `title`='$title',`description`='$description',`original_price`='$original_price',
-                `margin`='$margin' WHERE `id`= '$id'");
-
+                `margin`='$margin',`margin_mode`='$margin_mode',`final_price`= '$final_price' WHERE `id`= '$id'");
             header("Location:/product/tables");
+        }
+        elseif ( (isset($id) )&& ($margin = 40)){
+
+            $final_price = $original_price + ((40 / 100) * $original_price);
+            $margin_mode = 'fix overpriced';
+            $pdo = new Model();
+            $pdo->connection->query("UPDATE `product` SET `title`='$title',`description`='$description',`original_price`='$original_price',
+                `margin`='$margin',`margin_mode`='$margin_mode',`final_price`= '$final_price' WHERE `id`= '$id'");
+            header("Location:/product/tables");
+
+
 
         }
     }

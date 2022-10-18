@@ -2,7 +2,7 @@
 $pdo = new Model();
 $params['id'];
 $user = $pdo->connection->query("SELECT * FROM `product` WHERE `id`='{$params['id']}'; ")->fetch(PDO::FETCH_ASSOC);
-
+var_dump($user);
 ?>
 
 <div class="container" >
@@ -10,15 +10,15 @@ $user = $pdo->connection->query("SELECT * FROM `product` WHERE `id`='{$params['i
     <form action="/product/edit" method="post">
         <div class="row">
             <div>
-                <input type="hidden" name ="id" value="<?php echo $params['id']; ?>" >
+                <input type="hidden" name ="id" value="<?= $params['id']; ?>" >
             </div>
             <div class="col-9" >
                 <label class="form-label" for="title"></label>
                 <input class="form-control" type="text" id="title"  name="title" value="<?= $user['title']; ?>" placeholder="Title" required>
             </div>
-            <div class="col-9">
+            <div class="col-5">
                 <label for="description" class="form-label"></label>
-                <textarea class="form-control" id="description" placeholder="Description" name ="description" value="<?= $user['description']; ?>" required></textarea>
+                <input class="form-control" id="description" placeholder="Description" name ="description" value="<?= $user['description']; ?>" required>
             </div>
             <div class="col-4">
                 <label for="original_price" class="form-`label"></label>
@@ -33,6 +33,20 @@ $user = $pdo->connection->query("SELECT * FROM `product` WHERE `id`='{$params['i
                         <input type="number" class="form-control" id="margin" name ="margin" value="<?= $user['margin']; ?>" >
                     </div>
                 </div>
+
+                <?php if (($user['margin_mode'] === "margin")){ ?>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name ="plus_margin" value="plus_margin"  id="plus_margin"<?= 'checked';?> >
+                    <label class="form-check-label" for="plus_margin">
+                        Plus margin
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="fixa" id="fixa" name ="fixa">
+                    <label class="form-check-label" for="fixa">
+                        Fix overpriced +40%
+                    </label>
+                </div><?php }  elseif (($user['margin_mode'] === "fix overpriced")){ ?>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name ="plus_margin" value="plus_margin"  id="plus_margin">
                     <label class="form-check-label" for="plus_margin">
@@ -40,13 +54,11 @@ $user = $pdo->connection->query("SELECT * FROM `product` WHERE `id`='{$params['i
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="fixa" id="fixa" name ="fixa" >
+                    <input class="form-check-input" type="checkbox" value="fixa" id="fixa" name ="fixa" <?= 'checked';?>>
                     <label class="form-check-label" for="fixa">
                         Fix overpriced +40%
                     </label>
-                </div>
-
-
+                </div> <?php } ?>
 
             </div>
             <input class="btn btn-danger w-100" type="submit" value="Edit product">

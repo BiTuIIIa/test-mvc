@@ -2,7 +2,7 @@
 $pdo = new Model();
 $params['id'];
 $user = $pdo->connection->query("SELECT * FROM `adduser` WHERE `id`='{$params['id']}'; ")->fetch(PDO::FETCH_ASSOC);
-
+var_dump($user);
 ?>
 
 

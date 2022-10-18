@@ -20,7 +20,7 @@
                 <label for="margin" class="form-label"></label>
                 <div class="input-group has-validation">
                     <span class="input-group-text">Margin %</span>
-                    <input type="number" class="form-control" id="margin" name ="margin" required>
+                    <input type="number" class="form-control" id="margin" name ="margin" >
         </div>
         </div>
             <div class="form-check">

@@ -6,7 +6,7 @@
                 <th scope="col">Title <i class="bi bi-pen"></i> </th>
                 <th scope="col">Description</th>
                 <th scope="col">Original price USD</th>
-                <th scope="col">Margin %</th>
+                <th scope="col">Margin</th>
                 <th scope="col">Margin mode</th>
                 <th scope="col">Final price USD</th>
                 <th scope="col">Action</th>

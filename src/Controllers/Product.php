@@ -37,36 +37,23 @@ class Product extends BaseController
         $description = $this->request->description;
         $original_price = $this->request->original_price;
         $margin = $this->request->margin;
-        $plus_margin = $this->request->plus_margin;
-        $fixa = $this->request->fixa;
+        $margin_mode=$this->request->margin_mode;
+        $final_price=$this->request->final_price;
 
-        $pdo = new Model();
+        var_dump($this->request);
 
-        if (isset($plus_margin) && ($fixa === null)) {
 
-            $final_price = $original_price + (($margin / 100) * $original_price);
-            $margin_mode = "margin";
+        if (isset($title) ) {
 
-            $pdo->connection->query("INSERT INTO `product` (`title`,`description`,`original_price`,`margin`,`margin_mode`,`final_price`) 
-        VALUE ('$title','$description','$original_price','$margin', '$margin_mode','$final_price')");
-            header('Location: /product/tables ');
-            exit();
-        } elseif (isset($fixa) && ($plus_margin === null)) {
-
-            $final_price = $original_price + ((40 / 100) * $original_price);
-            $margin_mode = "fix overpriced";
-            $margin = 40;
-
+            $pdo = new Model();
             $pdo->connection->query("INSERT INTO `product` (`title`,`description`,`original_price`,`margin`,`margin_mode`,`final_price`) 
         VALUE ('$title','$description','$original_price','$margin', '$margin_mode','$final_price')");
             header('Location: /product/tables ');
             exit();
         } else {
-            echo "Вы добрый человек но накинуть что то нужно!";
-
+            echo "error";
         }
     }
-
 
     public function delproduct()
     {
@@ -85,30 +72,18 @@ class Product extends BaseController
         $description = $this->request->description;
         $original_price = $this->request->original_price;
         $margin = $this->request->margin;
+        $margin_mode=$this->request->margin_mode;
+        $final_price=$this->request->final_price;
 
-        var_dump($margin);
 
 
-        if (isset($id) && ($margin>=41 || $margin<=39) ) {
+        if (isset($id)) {
 
-            $final_price = $original_price + (($margin / 100) * $original_price);
-            $margin_mode = 'margin';
             $pdo = new Model();
             $pdo->connection->query("UPDATE `product` SET `title`='$title',`description`='$description',`original_price`='$original_price',
                 `margin`='$margin',`margin_mode`='$margin_mode',`final_price`= '$final_price' WHERE `id`= '$id'");
             header("Location:/product/tables");
         }
-        elseif ( (isset($id) )&& ($margin = 40)){
 
-            $final_price = $original_price + ((40 / 100) * $original_price);
-            $margin_mode = 'fix overpriced';
-            $pdo = new Model();
-            $pdo->connection->query("UPDATE `product` SET `title`='$title',`description`='$description',`original_price`='$original_price',
-                `margin`='$margin',`margin_mode`='$margin_mode',`final_price`= '$final_price' WHERE `id`= '$id'");
-            header("Location:/product/tables");
-
-
-
-        }
     }
 }

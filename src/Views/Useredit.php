@@ -24,6 +24,7 @@ var_dump($user);
             <label class="form-label" for="email">Email address</label>
             <input class="form-control" type="email" id="email" name="email" value="<?= $user['email'];?>" required>
         </div>
+
         <input class="btn btn-danger w-100" type="submit" value="Edit">
     </form>
 

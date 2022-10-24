@@ -9,6 +9,7 @@
                 <th scope="col">Margin</th>
                 <th scope="col">Margin mode</th>
                 <th scope="col">Final price USD</th>
+                <th scope="col">Id_user</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <td><?php echo $value['margin']?></td>
                     <td><?php echo $value['margin_mode']?></td>
                     <td><?php echo $value['final_price']?></td>
+                    <td><?php echo $value['id_user']?></td>
                     <td>
 
                         <a href="/product/viewed?id=<?php echo $value['id']?>"  <button name = "edit" type="button" class="btn btn-success"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pen" viewBox="0 0 16 16">

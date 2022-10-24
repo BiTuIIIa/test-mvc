@@ -89,5 +89,14 @@ class User extends BaseController
     }
 
 
+    public function seluser (){
+
+
+          $pdo = new Model();
+          $user =  $pdo->connection->query("SELECT * FROM `adduser` ")->fetchAll(PDO::FETCH_ASSOC);
+          return json_encode($user);
+
+        }
+
 
 }

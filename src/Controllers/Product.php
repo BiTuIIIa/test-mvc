@@ -39,15 +39,15 @@ class Product extends BaseController
         $margin = $this->request->margin;
         $margin_mode=$this->request->margin_mode;
         $final_price=$this->request->final_price;
+        $id_user=$this->request->id_user;
 
-        var_dump($this->request);
 
 
         if (isset($title) ) {
 
             $pdo = new Model();
-            $pdo->connection->query("INSERT INTO `product` (`title`,`description`,`original_price`,`margin`,`margin_mode`,`final_price`) 
-        VALUE ('$title','$description','$original_price','$margin', '$margin_mode','$final_price')");
+            $pdo->connection->query("INSERT INTO `product` (`title`,`description`,`original_price`,`margin`,`margin_mode`,`final_price`,`id_user`) 
+        VALUE ('$title','$description','$original_price','$margin', '$margin_mode','$final_price','$id_user')");
             header('Location: /product/tables ');
             exit();
         } else {
@@ -74,16 +74,16 @@ class Product extends BaseController
         $margin = $this->request->margin;
         $margin_mode=$this->request->margin_mode;
         $final_price=$this->request->final_price;
+        $id_user=$this->request->id_user;
 
-
-
-        if (isset($id)) {
-
+        if (isset($id) && ($id_user>0) ) {
             $pdo = new Model();
             $pdo->connection->query("UPDATE `product` SET `title`='$title',`description`='$description',`original_price`='$original_price',
-                `margin`='$margin',`margin_mode`='$margin_mode',`final_price`= '$final_price' WHERE `id`= '$id'");
+                `margin`='$margin',`margin_mode`='$margin_mode',`final_price`= '$final_price',`id_user`='$id_user' WHERE `id`= '$id'");
+
             header("Location:/product/tables");
         }
+
 
     }
 }
